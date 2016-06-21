@@ -6,11 +6,23 @@
             $scope.rrVersion = rrVersion.version;
             
             //$scope.activePills = $location.url();
-
+            $scope.$on("$viewContentLoaded", function() {
+                var interval = setInterval(function() {
+                    console.log($scope.activePills);
+                    if ($scope.activePills != "undefined") {
+                        $scope.activePills = $location.url();
+                        clearInterval(interval);
+                    }
+                },1); 
+            });
             ($scope.activatePills = function() {
-            	setTimeout(function() {
-            		$scope.activePills = $location.url();
-            	},10);
+            	var interval = setInterval(function() {
+                    console.log($scope.activePills);
+                    if ($scope.activePills != "undefined") {
+                        $scope.activePills = $location.url();
+                        clearInterval(interval);
+                    }
+            	},1);
             })();   
        }]);
 
