@@ -183,15 +183,13 @@ class UserController extends AppController
         if($request['userId']) {
             $getdata = User::find()
             ->select(['user_id','username','last_name','first_name','email','middle_name','passport_series','passport_number','address','role.name as role_name', 'role.role_id', 'community.name as community_name','user.community_id as communityId','activation_status'])
-            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name', 'role.role_id','community.name as community_name','user.community_id as communityId','activation_status'])
-            
             ->joinWith('personalData')->joinWith('userRole')->joinWith('community')           
             ->andFilterWhere(['user_id' => $request['userId']])
             ->asArray();
         } else {
             if(!$request['currentCommId']) {
                 $getdata = User::find()
-                ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name', 'role.role_id', 'community.name as community_name','user.community_id as communityId','activation_status'])
+                ->select(['user_id','username','last_name','first_name','email','middle_name','passport_series','passport_number','address','role.name as role_name', 'role.role_id', 'community.name as community_name','user.community_id as communityId','activation_status'])
                 ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
                 ->andFilterWhere($filters)
                 ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
