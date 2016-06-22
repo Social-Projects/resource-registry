@@ -80,20 +80,21 @@
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
-                       }); clearInterval(intervalID);
+                       });
                    }  else if ($scope.searchingDone || $scope.searchingDone2) {
                        PaginationServicee.switchPage(index, $scope.reqQuery + '?option='+ $scope.searchType + '&value='+ $scope.requestSearch + "&page=" + index + "&per-page=" + constant.perPage)
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
-                       }); clearInterval(intervalID);
+                       });
                    } else {
                        PaginationServicee.switchPage(index, $scope.reqQuery + '?')
                            .then(function(data) {
                                $rootScope.xmlData = data.data;
                                $scope.currentPage = PaginationServicee.currentPage;
-                       }); clearInterval(intervalID);
+                       });
                    }    
+                    clearInterval(intervalID);
                }
            },10);
        };
