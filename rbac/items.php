@@ -57,7 +57,7 @@ return [
     'user/userdata' => [
         'type' => 2,
     ],
-    '/user/edit' => [
+    'user/edituserdata' => [
         'type' => 2,
     ],
     'user/getrole' => [
@@ -152,7 +152,7 @@ return [
         'children' => [
             'user',
             'user/userdata',
-            '/user/edit',
+            'user/edituserdata',
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
@@ -166,7 +166,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user/userdata',
-            '/user/edit',
+            'user/edituserdata',
             'user/getrole',
             'user/changeactivationstatus',
             'user/changerole',
