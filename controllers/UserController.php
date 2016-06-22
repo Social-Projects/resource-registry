@@ -180,33 +180,64 @@ class UserController extends AppController
             ]];
         }
 
-        if(!$request['currentCommId']) {
+        if($request['userId']) {
             $getdata = User::find()
+            ->select(['user_id','username','last_name','first_name','email','middle_name','passport_series','passport_number','address','role.name as role_name', 'role.role_id', 'community.name as community_name','user.community_id as communityId','activation_status'])
             ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name', 'role.role_id','community.name as community_name','user.community_id as communityId','activation_status'])
-            ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
-            ->andFilterWhere($filters)
-            ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
-            ->orderBy($sort)
+            
+            ->joinWith('personalData')->joinWith('userRole')->joinWith('community')           
+            ->andFilterWhere(['user_id' => $request['userId']])
             ->asArray();
         } else {
-            $getdata = User::find()
-            ->select(['user_id','username','last_name','first_name','passport_series','passport_number','user.community_id as communityId','role.name as role_name', 'role.role_id','activation_status'])
-            ->joinWith('personalData')->joinWith('userRole')
-            ->andFilterWhere($filters)
-            ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
-            ->andFilterWhere(['like', 'user.community_id', $request['currentCommId']])
-            ->orderBy($sort)
-            ->asArray();
+            if(!$request['currentCommId']) {
+                $getdata = User::find()
+                ->select(['user_id','username','last_name','first_name','passport_series','passport_number','role.name as role_name', 'role.role_id', 'community.name as community_name','user.community_id as communityId','activation_status'])
+                ->joinWith('personalData')->joinWith('userRole')->joinWith('community')
+                ->andFilterWhere($filters)
+                ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
+                ->orderBy($sort)
+                ->asArray();
+            } else {
+                $getdata = User::find()
+                ->select(['user_id','username','last_name','first_name','passport_series','passport_number','user.community_id as communityId','role.name as role_name','activation_status'])
+                ->joinWith('personalData')->joinWith('userRole')
+                ->andFilterWhere($filters)
+                ->andFilterWhere(['like', 'activation_status', $request['activation_status']])
+                ->andFilterWhere(['user.community_id' => $request['currentCommId']])
+                ->orderBy($sort)
+                ->asArray(); 
+            }
         }
-            return self::buildPagination($getdata, 10); 
+        return self::buildPagination($getdata, 10);
     }
+    
+    public function actionEdituserdata() {    
+        $request = \Yii::$app->request->getBodyParams();
 
-    // public function actionChangeactivationstatus() {
-    //     $request= \Yii::$app->request->get();
-    //     $user = User::findOne(['user_id' => $request['user_id']]);
-    //     $user->activation_status=$request['activation_status'];
-    //     $user->update();
-    // }
+        $user = User::findOne(['user_id' => $request['userId']]);
+        $personalData = $user->personalData;
+        // $userRole = $user->userRole;
+        // $community = $user->community;
+
+        $user->username=$request['username'];
+        $user->email=$request['email'];
+        
+        $personalData->last_name=$request['last_name'];
+        $personalData->first_name=$request['first_name'];
+        $personalData->middle_name=$request['middle_name'];
+        $personalData->passport_series=$request['passport_series'];
+        $personalData->passport_number=$request['passport_number'];
+        $personalData->address=$request['address'];
+
+        // $role->role_name=$request['role_name'];
+
+        // $community->community_name=$request['community_name']; 
+
+        $user->update();
+        $personalData->update();
+        // $role->update();
+        // $community->update();
+    }
 
     public function actionChangeactivationstatus() {
         $request= \Yii::$app->request->get();
@@ -244,17 +275,18 @@ class UserController extends AppController
     }
     
     public function actionChangerole() {
-        $request= \Yii::$app->request->post();
-        $user = User::findOne(['user_id' => $request['user_id']]);
+        $request = \Yii::$app->request->getBodyParams();
+        // $request= \Yii::$app->request->post();
+        $user = User::findOne(['user_id' => $request['userId']]);
         $user->role_id=$request['role_id'];
         $user->update();
     }
 
     public function actionChangecommunity() {
-        $request= \Yii::$app->request->post();
-        $user = User::findOne(['user_id' => $request['user_id']]);
+        $request = \Yii::$app->request->getBodyParams();
+        // $request= \Yii::$app->request->post();
+        $user = User::findOne(['user_id' => $request['userId']]);
         $user->community_id=$request['community_id'];
         $user->update();
     }
-
 }

@@ -61,12 +61,8 @@ class RbacController extends Controller
         $auth->add($resourceClassChangeActivationStatus);
         $userdata = $auth->createPermission('user/userdata'); 
         $auth->add($userdata);
-        $userEdit = $auth->createPermission('user/edit'); 
-        $auth->add($userEdit);
-        $usersoutput = $auth->createPermission('user/index'); 
-        $auth->add($usersoutput);
-        $userview = $auth->createPermission('user/view'); 
-        $auth->add($userview);
+        $edituserdata = $auth->createPermission('user/edituserdata'); 
+        $auth->add($edituserdata);
         $userGetRole = $auth->createPermission('user/getrole'); 
         $auth->add($userGetRole);
         $userAdduser = $auth->createPermission('user/adduser'); 
@@ -105,6 +101,7 @@ class RbacController extends Controller
         $auth->add($addResClass);
         $findAllAttr = $auth->createPermission('attribute_class_view/findallattributes'); 
         $auth->add($findAllAttr);
+        
 
 
 
@@ -144,8 +141,6 @@ class RbacController extends Controller
         $auth->addChild($user, $creatingRequest);
         $auth->addChild($user, $resNum);
         $auth->addChild($user, $findAllAttr);
-        $auth->addChild($user, $usersoutput);
-        $auth->addChild($user, $userview);
 
          
         // registrar
@@ -154,6 +149,7 @@ class RbacController extends Controller
         $auth->addChild($registrar, $findGlobalAttr);
         $auth->addChild($registrar, $findFilteredAttr);
         $auth->addChild($registrar, $findFilteredAttrbyResourceClass);
+        $auth->addChild($registrar, $resourceClassSearch);
         $auth->addChild($registrar, $findAllAttr);
         $auth->addChild($registrar, $resNum);
         
@@ -161,7 +157,7 @@ class RbacController extends Controller
         // commissioner
         $auth->addChild($commissioner, $user);
         $auth->addChild($commissioner, $userdata);
-        $auth->addChild($commissioner, $userEdit);
+        $auth->addChild($commissioner, $edituserdata);
         $auth->addChild($commissioner, $userGetRole);
         $auth->addChild($commissioner, $userChngActSt);
         $auth->addChild($commissioner, $userChngRole);
@@ -172,7 +168,7 @@ class RbacController extends Controller
 
         // admin
         $auth->addChild($admin, $userdata);
-        $auth->addChild($admin, $userEdit);
+        $auth->addChild($admin, $edituserdata);
         $auth->addChild($admin, $userGetRole);
         $auth->addChild($admin, $userChngActSt);
         $auth->addChild($admin, $userChngRole);
@@ -196,9 +192,6 @@ class RbacController extends Controller
         $auth->addChild($admin, $findGlobalAttr);
         $auth->addChild($admin, $findFilteredAttr);
         $auth->addChild($admin, $findFilteredAttrbyResourceClass);
-        $auth->addChild($admin, $usersoutput);
-        $auth->addChild($admin, $userview);
-
 
         
         

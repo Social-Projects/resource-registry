@@ -107,7 +107,7 @@ class Request extends \yii\db\ActiveRecord
      */
     public function getRes()
     {
-        return $this->hasOne(Resource::className(), ['resource_id' => 'res_id']);
+        return $this->hasOne(Resource::className(), ['registration_number' => 'res_id']);
     }
 
     /**

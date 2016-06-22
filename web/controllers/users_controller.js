@@ -9,12 +9,12 @@
     function UsersController(RestService, $location, constant, $filter , $rootScope, $scope, $http, PaginationServicee) {
 
         $rootScope.xmlData = [];
-	    $rootScope.xmlData.items = [];
+        $rootScope.xmlData.items = [];
         $scope.roleFilter;
         $scope.userSearch;
         $scope.sortingDone;
-        $scope.roleFound = [];
-        $scope.communityFound = [];
+        // $scope.roleFound = [];
+        // $scope.communityFound = [];
         $scope.currentCommId = (angular.fromJson(sessionStorage.user)).communityId;
 
         $scope.modifyRoleName = function() {
@@ -43,7 +43,7 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                //Here will be errorhandler
+                console.log("Can't reload list!");
             }
         })();
 
@@ -109,7 +109,7 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                //Here will be errorhandler
+                console.log("Can't reload list!");
             }
         };
 
@@ -123,7 +123,7 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                //Here will be errorhandler
+                console.log("Can't reload list!");
             }
         };
 
@@ -142,7 +142,7 @@
                 $scope.modifyRoleName();
             }
             function errorHandler(data) {
-                //Here will be errorhandler
+                console.log("Can't reload list!");
             }
         };
 
@@ -160,79 +160,6 @@
                 alertPopup(status.status);
             }
         };
-
-        // get list of roles
-        (function(){
-            return $http.get('rest.php/users/getrole')
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $scope.roleFound = data.data.items;
-
-                var toEquate = {
-                    "user": "Співвласник",
-                    "registrar": "Реєстратор",
-                    "admin": "Адміністратор",
-                    "commissioner": "Уповноважений"
-                };
-                
-                for(var i = 0; i < $scope.roleFound.length; i++) {
-                    $scope.roleFound[i].role_name = toEquate[$scope.roleFound[i].role_name];
-                }
-                
-            }
-            function errorHandler(data) {
-                //Here will be errorhandler
-            }
-        }());
-
-        // change user role
-        $scope.changeRole = function (changeRoleId, user_id) {
-            $scope.role = {
-                role_id: changeRoleId,
-                user_id: user_id
-            }
-            $http.post('rest.php/users/changerole', JSON.stringify($scope.role))
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler() {
-                $scope.refreshData();
-            }
-            function errorHandler() {
-                //Here will be errorhandler
-            }
-        };
-
-        // get list of communities
-        (function(){
-            return $http.get('rest.php/communities/show')
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $scope.communityFound = data.data.items;             
-            }
-            function errorHandler(data) {
-                //Here will be errorhandler
-            }
-        }());
-
-        // change user community
-        $scope.changeCommunity = function(changeComId, user_id) {
-            $scope.community = {
-                community_id: changeComId,
-                user_id: user_id
-            }
-            $http.post('rest.php/users/changecommunity', JSON.stringify($scope.community))
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler() {
-                $scope.refreshData();
-            }
-            function errorHandler() {
-                //Here will be errorhandler
-            }
-        }
-
         function alertPopup(argument) {
             if(argument==200) {
                 alert("Статус користувача змінено!");    
@@ -240,6 +167,78 @@
                 alert('Неможливо змінити статус користувача');    
             }  
         }
+
+        // // get list of roles
+        // (function(){
+        //     return $http.get('rest.php/users/getrole')
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler(data) {
+        //         $scope.roleFound = data.data.items;
+
+        //         var toEquate = {
+        //             "user": "Співвласник",
+        //             "registrar": "Реєстратор",
+        //             "admin": "Адміністратор",
+        //             "commissioner": "Уповноважений"
+        //         };
+                
+        //         for(var i = 0; i < $scope.roleFound.length; i++) {
+        //             $scope.roleFound[i].role_name = toEquate[$scope.roleFound[i].role_name];
+        //         }
+                
+        //     }
+        //     function errorHandler(data) {
+        //         console.log("Can't reload list!");
+        //     }
+        // }());
+
+        // // change user role
+        // $scope.changeRole = function (changeRoleId, user_id) {
+        //     $scope.role = {
+        //         role_id: changeRoleId,
+        //         user_id: user_id
+        //     }
+        //     $http.post('rest.php/users/changerole', JSON.stringify($scope.role))
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler() {
+        //         $scope.refreshData();
+        //     }
+        //     function errorHandler() {
+        //         console.log("Can't reload list!");
+        //     }
+        // };
+
+        // // get list of communities
+        // (function(){
+        //     return $http.get('rest.php/communities/show')
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler(data) {
+        //         $scope.communityFound = data.data.items;             
+        //     }
+        //     function errorHandler(data) {
+        //         console.log("Can't reload list!");
+        //     }
+        // }());
+
+        // // change user community
+        // $scope.changeCommunity = function(changeComId, user_id) {
+        //     $scope.community = {
+        //         community_id: changeComId,
+        //         user_id: user_id
+        //     }
+        //     $http.post('rest.php/users/changecommunity', JSON.stringify($scope.community))
+        //         .then(successHandler)
+        //         .catch(errorHandler);
+        //     function successHandler() {
+        //         $scope.refreshData();
+        //     }
+        //     function errorHandler() {
+        //         console.log("Can't reload list!");
+        //     }
+        // }
     }
 })();
 
