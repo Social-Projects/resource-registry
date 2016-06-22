@@ -47,21 +47,6 @@
             }
         })();
 
-        ($scope.getAtcStat = function() {
-            return $http.get('rest.php/' + constant.usersQuery + '?currentCommId=' + $scope.currentCommId)
-                .then(successHandler)
-                .catch(errorHandler);
-            function successHandler(data) {
-                $scope.xmlData.activation_status = [];
-                for(var i = 0; i<$scope.xmlData.items.length; i++){
-                    $scope.xmlData.activation_status.push($scope.xmlData.items[i].activation_status);
-                }
-            }
-            function errorHandler(data) {
-                //Here will be errorhandler
-            }
-        })();
-
         $scope.refreshData = function() {
             $scope.getData();
         }
@@ -169,7 +154,7 @@
                     .catch(errorHandler);
             }
             function successHandler(status) {
-                $scope.getAtcStat();
+                $scope.refreshData();
             }
             function errorHandler(status) {
                 alertPopup(status.status);
