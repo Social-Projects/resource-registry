@@ -149,6 +149,7 @@ class RbacController extends Controller
         $auth->addChild($registrar, $findGlobalAttr);
         $auth->addChild($registrar, $findFilteredAttr);
         $auth->addChild($registrar, $findFilteredAttrbyResourceClass);
+        $auth->addChild($registrar, $resourceClassSearch);
         $auth->addChild($registrar, $findAllAttr);
         $auth->addChild($registrar, $resNum);
         

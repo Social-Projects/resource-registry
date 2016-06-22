@@ -142,6 +142,7 @@ return [
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
+            'resource_class/search',
             'attribute_class_view/findallattributes',
             'resource/registrationnumber',
         ],

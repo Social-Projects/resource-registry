@@ -6,12 +6,15 @@
             $scope.rrVersion = rrVersion.version;
             
             //$scope.activePills = $location.url();
+            $scope.$on("$viewContentLoaded", function() {
+                var interval = setInterval(function() {
 
-            ($scope.activatePills = function() {
-            	setTimeout(function() {
-            		$scope.activePills = $location.url();
-            	},10);
-            })();   
+                    if ($scope.activePills != "undefined") {
+                        $scope.activePills = $location.url();
+                        clearInterval(interval);
+                    }
+                },1); 
+            });
        }]);
 
 
