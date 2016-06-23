@@ -433,19 +433,39 @@
 
 
             function createParameters  (params, resourceId) {
+<<<<<<< HEAD
 
+=======
+                console.log($rootScope.coords);
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
                 for (var i in params) {
                     if (params[i]) {
                         params[i].resource_id = resourceId;
                         params[i].attribute_id = parseInt(i) + 1;
+<<<<<<< HEAD
+                        if (params[i]['attribute_id']===constant.SQUARE_ID){
+                            params[i]['value'] = toSquareMeters(params[i]['value']);
+                        }
+=======
+                        // if (params[i]['attribute_id']===constant.SQUARE_ID){
+                        //     params[i]['value'] = toSquareMeters(params[i]['value']);
+                        // }
+                        // if (params[i]['attribute_id']===constant.PERIMETER_ID){
+                        //     params[i]['value'] = toSquareMeters(params[i]['value']);
+                        // }
                         params[i]['value'] = toSquareMeters(params[i]['value']);
                         
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
                         RestService.createData(params[i], constant.parametersQuery)
                     }
                 }
             };
 
+<<<<<<< HEAD
+            function getArea(zones) {
+=======
             $scope.getArea = function(zones) {
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
                 var currzonecoords = [];
 
                 for(var k=0;k<zones.length;k++) {
@@ -453,8 +473,14 @@
                     currzonecoords.push(currentcoord);
                 }
                 var zonearea = google.maps.geometry.spherical.computeArea(currzonecoords);
+<<<<<<< HEAD
+                return zonearea;
+=======
+                console.log(zonearea);
                 $scope.params[3] = {};
                 $scope.params[3].value = Math.round(zonearea);
+                console.log($scope.params);
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
             };
 
             function getRegistrationNumber(id){
@@ -487,18 +513,31 @@
             };
 
 
+<<<<<<< HEAD
+            function getPerimeter(zones) {
+=======
             $scope.getPerimeter = function(zones) {
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
                 var perimeter = 0;
+
                 for(var k=0;k<zones.length-1;k++) {
                     var p1 = new google.maps.LatLng(zones[k]['lat'],zones[k]['lng']),
                         p2 = new google.maps.LatLng(zones[k+1]['lat'],zones[k+1]['lng']);
+
                     perimeter += google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
                 }
                 var p1 = new google.maps.LatLng(zones[0]['lat'],zones[0]['lng']),
                     p2 = new google.maps.LatLng(zones[zones.length-1]['lat'],zones[zones.length-1]['lng']);
+
                 perimeter += google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
+<<<<<<< HEAD
+
+                return perimeter;
+=======
                 $scope.params[6] = {};
                 $scope.params[6].value = Math.round(perimeter);
+                console.log($scope.params);
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
             };
 
 

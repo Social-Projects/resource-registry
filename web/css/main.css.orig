@@ -805,9 +805,15 @@ a, a:hover, a:focus {
 .find-resources .list-group-item:nth-child(1) {
     font-weight: 400 !important;
 }
+<<<<<<< HEAD
+.pagination * {
+    cursor: pointer !important;
+}
+=======
 .pagination *, .confirm-owner {
     cursor: pointer !important;
 }
 .set-parameters {
     margin: 30px 0;
 }
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
