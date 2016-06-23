@@ -45,9 +45,9 @@
             }
         })();
 
-        $scope.refreshData = function() {
-            $scope.getData();
-        }
+        // $scope.refreshData = function() {
+        //     $scope.getData();
+        // }
 
         //Pagination start
         $scope.currentPage = PaginationServicee.currentPage;
@@ -65,6 +65,8 @@
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
+                    clearInterval(intervalID);
+                            
                     }  else if ($scope.sortingDone) {
                         PaginationServicee.switchPage(index, constant.usersQuery + '?value=' + $scope.sortingDone + "&page=" + index + "&per-page=" + constant.perPage)
                             .then(function(data) {
@@ -72,6 +74,8 @@
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
+                    clearInterval(intervalID);
+
                     } else {
                         PaginationServicee.switchPage(index, constant.usersQuery + '?currentCommId=' + $scope.currentCommId + '&')
                             .then(function(data) {
@@ -79,8 +83,9 @@
                                 $scope.modifyRoleName();
                                 $scope.currentPage = PaginationServicee.currentPage;
                         });
-                    }    
                     clearInterval(intervalID);
+
+                    }    
                 }
 
             },10);

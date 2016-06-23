@@ -152,6 +152,34 @@ class UserController extends AppController
         echo $model->username;
         exit('ok');
     }
+
+    public function actionChangepassloged() {
+        if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
+            throw new \yii\web\HttpException(400, 'Дані не отримані');
+        }
+       $model = User::getUserByUserName($post['username']);
+        if (!$model->username) {
+            throw new \yii\web\HttpException(400, 'Даного користувача не існує');
+        }
+        $model->setPassword($post['password']);
+        $model->removePasswordResetToken();
+        $model->save();
+        echo $model->username;
+        exit('changed');
+    }
+    public function actionChangeemail() {
+        if (!$post = \Yii::$app->getRequest()->getBodyParams()) {
+            throw new \yii\web\HttpException(400, 'Дані не отримані');
+        }
+       $model = User::getUserByUserName($post['username']);
+        if (!$model->username) {
+            throw new \yii\web\HttpException(400, 'Даного користувача не існує');
+        }
+        $request = User::find()->select('*')->where(['username' => $post['username']])->one();
+        $request->email = $post['email'];
+        $request->update();
+        exit('changed');
+    }
     
     public function actionUserdata() {
         $request = \Yii::$app->request->get();

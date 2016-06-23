@@ -25,6 +25,8 @@ class RbacController extends Controller
 
         $commShow = $auth->createPermission('community/show'); 
         $auth->add($commShow); 
+        $setEmail = $auth->createPermission('user/changeemail'); 
+        $auth->add($setEmail); 
         $commAdd = $auth->createPermission('community/addcomm'); 
         $auth->add($commAdd);
         $commView = $auth->createPermission('community/view'); 
@@ -101,6 +103,8 @@ class RbacController extends Controller
         $auth->add($addResClass);
         $findAllAttr = $auth->createPermission('attribute_class_view/findallattributes'); 
         $auth->add($findAllAttr);
+        $exportRes = $auth->createPermission('resource/export'); 
+        $auth->add($exportRes);
         
 
 
@@ -141,6 +145,7 @@ class RbacController extends Controller
         $auth->addChild($user, $creatingRequest);
         $auth->addChild($user, $resNum);
         $auth->addChild($user, $findAllAttr);
+        $auth->addChild($user, $setEmail);
 
          
         // registrar
@@ -152,6 +157,8 @@ class RbacController extends Controller
         $auth->addChild($registrar, $resourceClassSearch);
         $auth->addChild($registrar, $findAllAttr);
         $auth->addChild($registrar, $resNum);
+        $auth->addChild($registrar, $exportRes);
+        $auth->addChild($registrar, $setEmail);
         
        
         // commissioner
@@ -164,6 +171,7 @@ class RbacController extends Controller
         $auth->addChild($commissioner, $userAdduser);
         $auth->addChild($commissioner, $commIndex);
         $auth->addChild($commissioner, $commShow);
+        $auth->addChild($commissioner, $setEmail);
         
 
         // admin
@@ -192,6 +200,7 @@ class RbacController extends Controller
         $auth->addChild($admin, $findGlobalAttr);
         $auth->addChild($admin, $findFilteredAttr);
         $auth->addChild($admin, $findFilteredAttrbyResourceClass);
+        $auth->addChild($admin, $setEmail);
 
         
         
