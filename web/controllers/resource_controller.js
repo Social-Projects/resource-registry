@@ -25,7 +25,6 @@
             $scope.lat = {};
             $scope.lng = {};
             $scope.coord_center = {};
-            $scope.addParameter;
             $scope.params = [];
             $scope.allAttributes = {};
 
@@ -347,7 +346,7 @@
                     $scope.allAttributes = data.data;
                 }
                 function errorHandler(data) {
-                    console.log("Can't reload list!");
+                    //Here will be errorhandler
                 }
             };
 
@@ -359,9 +358,7 @@
         $scope.createResource = function(resource, owner, params) {
             resource.coords_center_lat = $scope.cxTimes6SignedArea / $scope.sixSignedArea;
             resource.coords_center_lng = $scope.cyTimes6SignedArea / $scope.sixSignedArea;
-            // for (var i in resource) {
-            //     console.log("property : " + i +  "|    val :" + resource[i]);
-            // }
+
 
             //CREATE RESOURCE
 
@@ -438,8 +435,6 @@
             function createParameters  (params, resourceId) {
 
                 for (var i in params) {
-                    alert('params');
-
                     if (params[i]) {
                         params[i].resource_id = resourceId;
                         params[i].attribute_id = parseInt(i) + 1;
@@ -450,17 +445,6 @@
                     }
                 }
             };
-
-            $scope.addParameters = function(value, attribute_id, resourceId) {
-                // $scope.params.shift();
-                for (var i = 0; i < $scope.allAttributes.length; i++) {
-
-                    $scope.params[[$scope.allAttributes[i].name]] = value[i];
-                    
-                    
-                }
-                console.log($scope.params);
-            }
 
             function getArea(zones) {
                 var currzonecoords = [];
