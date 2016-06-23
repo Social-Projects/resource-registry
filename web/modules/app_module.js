@@ -103,6 +103,14 @@
                 authRoles: 'guest'
             }
         })
+        .when('/site/updateprofile', {
+            controller: 'LoginController',
+            templateUrl: 'views/site/changepass.html',
+            controllerAs: 'vm',
+            data: {
+                 authRoles: ['admin', 'commissioner', 'user', 'registrar']
+            }
+        })
         .when('/resource/community', {
             controller: 'UsersCommunity',
             templateUrl: 'views/site/community.html',

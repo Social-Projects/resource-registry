@@ -3,6 +3,9 @@ return [
     'community/show' => [
         'type' => 2,
     ],
+    'user/changeemail' => [
+        'type' => 2,
+    ],
     'community/addcomm' => [
         'type' => 2,
     ],
@@ -114,6 +117,9 @@ return [
     'attribute_class_view/findallattributes' => [
         'type' => 2,
     ],
+    'resource/export' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -131,6 +137,7 @@ return [
             'resource/creatingrequest',
             'resource/registrationnumber',
             'attribute_class_view/findallattributes',
+            'user/changeemail',
         ],
     ],
     'registrar' => [
@@ -145,6 +152,8 @@ return [
             'resource_class/search',
             'attribute_class_view/findallattributes',
             'resource/registrationnumber',
+            'resource/export',
+            'user/changeemail',
         ],
     ],
     'commissioner' => [
@@ -160,6 +169,7 @@ return [
             'user/adduser',
             'community/index',
             'community/show',
+            'user/changeemail',
         ],
     ],
     'admin' => [
@@ -191,6 +201,7 @@ return [
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
+            'user/changeemail',
         ],
     ],
 ];

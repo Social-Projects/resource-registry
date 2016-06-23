@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="favicon" href="favicon.ico">
+        <link rel="shortcut icon" href="favicon.ico">
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="vendor/bower/normalize-css/normalize.css">
@@ -51,8 +51,10 @@
             <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">
                     <li class="md-login-sign" ng-if="currentUser.isLogined">
-                        <span class="glyphicon glyphicon-user btn-mater" aria-hidden="true"></span>
-                        <span>&nbsp;{{currentUser.username}}</span>
+                        <a href="/site/updateprofile">
+                            <span class="glyphicon glyphicon-user btn-mater" aria-hidden="true"></span>
+                            <span>&nbsp;{{currentUser.username}}</span>
+                        </a>
                     </li>
                     <li ng-controller="LoginController">
                         <button ng-if="currentUser.isLogined" class="btn btn-material-grey-200" ng-click="logout()">ВИЙТИ &nbsp; <span class="glyphicon glyphicon-log-out btn-mater" aria-hidden="true" ></span></button>

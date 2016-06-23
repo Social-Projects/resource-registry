@@ -56,8 +56,8 @@ class ResourceController extends AppController
 
 	public function actionExport($id)
 	{
-		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template.docx';
-		$source = dirname(__FILE__) . '/../runtime/temp.docx';
+		$templateFilepath = dirname(__FILE__) . '/../templates/Template.docx';
+		$source = dirname(__FILE__) . '/../temp.docx';
 
 		\PhpOffice\PhpWord\Autoloader::register();
 
@@ -102,13 +102,15 @@ class ResourceController extends AppController
 			'borderLeftSize' => 6,
 			'borderLeftColor' => '000',
 			'borderBottomSize' => 6,
-			'borderBottomColor' => '000'
+			'borderBottomColor' => '000',
+			'width' => 500
 		];
 		$innerTableRightCellStyle = [
 			'borderLeftSize' => 6,
 			'borderLeftColor' => '000',
 			'borderBottomSize' => 6,
-			'borderBottomColor' => '000'
+			'borderBottomColor' => '000',
+			'width' => 500
 		];
 		$innerTableFontStyle = [
 			'size' => 9
@@ -222,25 +224,25 @@ class ResourceController extends AppController
 						$valueFontStyle = $italicFontStyle;
 					}
 					$table->addRow(200);
-					$table->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(8))
+					$table->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4))
 						->addText(htmlspecialchars($key, ENT_COMPAT, 'UTF-8'), $boldFontStyle);
-					$table->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(15))
+					$table->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(12))
 						->addText(htmlspecialchars($value, ENT_COMPAT, 'UTF-8'), $valueFontStyle);
 				} else {
 					$row = $table->addRow();
-					$row->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(8))
+					$row->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(6))
 						->addText(htmlspecialchars($key, ENT_COMPAT, 'UTF-8'), $boldFontStyle);
 					$cell = $row->addCell();
 					$innerTable = $cell->addTable($innerTableStyle);
 
 					$innerTable->addRow(10);
-					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableCellStyle)
+					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2), $innerTableCellStyle)
 						->addText(htmlspecialchars('Північна широта', ENT_COMPAT, 'UTF-8'), $innerTableFontStyle, $innerTableParagraphStyle);
-					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableCellStyle)
+					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2), $innerTableCellStyle)
 						->addText(htmlspecialchars('Східна довгота', ENT_COMPAT, 'UTF-8'), $innerTableFontStyle, $innerTableParagraphStyle);
-					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableCellStyle)
+					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(3), $innerTableCellStyle)
 						->addText(htmlspecialchars("Північна широта \n(продовження)", ENT_COMPAT, 'UTF-8'), $innerTableFontStyle, $innerTableParagraphStyle);
-					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableRightCellStyle)
+					$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(3), $innerTableRightCellStyle)
 						->addText(htmlspecialchars("Східна довгота \n(продовження)", ENT_COMPAT, 'UTF-8'), $innerTableFontStyle, $innerTableParagraphStyle);
 
 					$coordinatesNumber = count($coordinates);
@@ -261,13 +263,13 @@ class ResourceController extends AppController
 							$lngCont = formatCoords($coordinates[$i + round($coordinatesNumber / 2) - 1][1]);
 						}
 						$innerTable->addRow(10);
-						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableCellStyle)
+						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2), $innerTableCellStyle)
 							->addText(htmlspecialchars($lat, ENT_COMPAT, 'UTF-8'), $italicFontStyle);
-						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableCellStyle)
+						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2), $innerTableCellStyle)
 							->addText(htmlspecialchars($lng, ENT_COMPAT, 'UTF-8'), $italicFontStyle);
-						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableCellStyle)
+						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2), $innerTableCellStyle)
 							->addText(htmlspecialchars($latCont, ENT_COMPAT, 'UTF-8'), $italicFontStyle);
-						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(4), $innerTableRightCellStyle)
+						$innerTable->addCell(\PhpOffice\PhpWord\Shared\Converter::cmToTwip(2), $innerTableRightCellStyle)
 							->addText(htmlspecialchars($lngCont, ENT_COMPAT, 'UTF-8'), $italicFontStyle);
 					}
 				}
