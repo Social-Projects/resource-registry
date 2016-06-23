@@ -45,9 +45,9 @@
             }
         })();
 
-        // $scope.refreshData = function() {
-        //     $scope.getData();
-        // }
+        $scope.refreshData = function() {
+            $scope.getData();
+        }
 
         //Pagination start
         $scope.currentPage = PaginationServicee.currentPage;

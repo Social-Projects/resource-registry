@@ -289,34 +289,32 @@ class UserController extends AppController
         }
     }
 
-    public function actionGetrole() {
-        $request= \Yii::$app->request->get();
-        if($request['currentRole']=='commissioner') {
-            $getrole = Role::find()
-            ->select(['role_id','role.name as role_name'])
-            ->andFilterWhere(['<>', 'role.name', 'admin'])
-            ->asArray();
-        } else {
-            $getrole = Role::find()
-            ->select(['role_id','role.name as role_name'])
-            ->asArray();
-        }
-        return self::buildPagination($getrole, 5);
-    }
+    // public function actionGetrole() {
+    //     $request= \Yii::$app->request->get();
+    //     if($request['currentRole']=='commissioner') {
+    //         $getrole = Role::find()
+    //         ->select(['role_id','role.name as role_name'])
+    //         ->andFilterWhere(['<>', 'role.name', 'admin'])
+    //         ->asArray();
+    //     } else {
+    //         $getrole = Role::find()
+    //         ->select(['role_id','role.name as role_name'])
+    //         ->asArray();
+    //     }
+    //     return self::buildPagination($getrole, 5);
+    // }
     
-    public function actionChangerole() {
-        // $request = \Yii::$app->request->getBodyParams();
-        $request= \Yii::$app->request->post();
-        $user = User::findOne(['user_id' => $request['user_id']]);
-        $user->role_id=$request['role_id'];
-        $user->update();
-    }
+    // public function actionChangerole() {
+    //     $request= \Yii::$app->request->post();
+    //     $user = User::findOne(['user_id' => $request['user_id']]);
+    //     $user->role_id=$request['role_id'];
+    //     $user->update();
+    // }
 
-    public function actionChangecommunity() {
-        // $request = \Yii::$app->request->getBodyParams();
-        $request= \Yii::$app->request->post();
-        $user = User::findOne(['user_id' => $request['userId']]);
-        $user->community_id=$request['community_id'];
-        $user->update();
-    }
+    // public function actionChangecommunity() {
+    //     $request= \Yii::$app->request->post();
+    //     $user = User::findOne(['user_id' => $request['userId']]);
+    //     $user->community_id=$request['community_id'];
+    //     $user->update();
+    // }
 }

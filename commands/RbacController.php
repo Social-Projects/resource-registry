@@ -65,16 +65,16 @@ class RbacController extends Controller
         $auth->add($userdata);
         $edituserdata = $auth->createPermission('user/edituserdata'); 
         $auth->add($edituserdata);
-        $userGetRole = $auth->createPermission('user/getrole'); 
-        $auth->add($userGetRole);
+        // $userGetRole = $auth->createPermission('user/getrole'); 
+        // $auth->add($userGetRole);
         $userAdduser = $auth->createPermission('user/adduser'); 
         $auth->add($userAdduser);
         $userChngActSt = $auth->createPermission('user/changeactivationstatus'); 
         $auth->add($userChngActSt);
-        $userChngRole = $auth->createPermission('user/changerole'); 
-        $auth->add($userChngRole);
-        $userChngCommunity = $auth->createPermission('user/changecommunity'); 
-        $auth->add($userChngCommunity);
+        // $userChngRole = $auth->createPermission('user/changerole'); 
+        // $auth->add($userChngRole);
+        // $userChngCommunity = $auth->createPermission('user/changecommunity'); 
+        // $auth->add($userChngCommunity);
         $reqShow = $auth->createPermission('request/showrequest'); 
         $auth->add($reqShow);
         $reqAdd = $auth->createPermission('request/addreq'); 
@@ -165,9 +165,9 @@ class RbacController extends Controller
         $auth->addChild($commissioner, $user);
         $auth->addChild($commissioner, $userdata);
         $auth->addChild($commissioner, $edituserdata);
-        $auth->addChild($commissioner, $userGetRole);
+        // $auth->addChild($commissioner, $userGetRole);
         $auth->addChild($commissioner, $userChngActSt);
-        $auth->addChild($commissioner, $userChngRole);
+        // $auth->addChild($commissioner, $userChngRole);
         $auth->addChild($commissioner, $userAdduser);
         $auth->addChild($commissioner, $commIndex);
         $auth->addChild($commissioner, $commShow);
@@ -177,10 +177,10 @@ class RbacController extends Controller
         // admin
         $auth->addChild($admin, $userdata);
         $auth->addChild($admin, $edituserdata);
-        $auth->addChild($admin, $userGetRole);
+        // $auth->addChild($admin, $userGetRole);
         $auth->addChild($admin, $userChngActSt);
-        $auth->addChild($admin, $userChngRole);
-        $auth->addChild($admin, $userChngCommunity);
+        // $auth->addChild($admin, $userChngRole);
+        // $auth->addChild($admin, $userChngCommunity);
         $auth->addChild($admin, $userAdduser);
         $auth->addChild($admin, $commAdd);
         $auth->addChild($admin, $commShow);

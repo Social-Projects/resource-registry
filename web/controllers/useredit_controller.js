@@ -12,8 +12,6 @@
         userEdit.user.userId = $routeParams.userId;
         userEdit.user.username = 'error';
         userEdit.user.role_id;
-        // userEdit.roleFound = [];
-        // userEdit.user.communityFound = [];
         userEdit.currentRole = (angular.fromJson(sessionStorage.user)).role;     
 
         (function(){
@@ -61,7 +59,9 @@
             } else {
                 userEdit.user.community_id = $rootScope.currentUser.communityId;
             }
-            
+            if(userEdit.user.role_id == 3) {
+                userEdit.user.community_id = null;
+            }
             $http.post('rest.php/users/edituserdata', JSON.stringify(userEdit.user))
                 .then(successHandler)
                 .catch(errorHandler);
@@ -69,7 +69,7 @@
                 $location.path('/site/users');
             }
             function errorHandler(result){
-                // handler
+                alert(result.data.message);
             }
         }
 
