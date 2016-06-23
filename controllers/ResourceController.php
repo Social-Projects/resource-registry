@@ -56,8 +56,8 @@ class ResourceController extends AppController
 
 	public function actionExport($id)
 	{
-		$templateFilepath = dirname(__FILE__) . '/../runtime/templates/Template.docx';
-		$source = dirname(__FILE__) . '/../runtime/temp.docx';
+		$templateFilepath = dirname(__FILE__) . '/../templates/Template.docx';
+		$source = dirname(__FILE__) . '/../temp.docx';
 
 		\PhpOffice\PhpWord\Autoloader::register();
 
