@@ -438,12 +438,6 @@
                     if (params[i]) {
                         params[i].resource_id = resourceId;
                         params[i].attribute_id = parseInt(i) + 1;
-                        // if (params[i]['attribute_id']===constant.SQUARE_ID){
-                        //     params[i]['value'] = toSquareMeters(params[i]['value']);
-                        // }
-                        // if (params[i]['attribute_id']===constant.PERIMETER_ID){
-                        //     params[i]['value'] = toSquareMeters(params[i]['value']);
-                        // }
                         params[i]['value'] = toSquareMeters(params[i]['value']);
                         
                         RestService.createData(params[i], constant.parametersQuery)
@@ -459,10 +453,8 @@
                     currzonecoords.push(currentcoord);
                 }
                 var zonearea = google.maps.geometry.spherical.computeArea(currzonecoords);
-                console.log(zonearea);
                 $scope.params[3] = {};
                 $scope.params[3].value = Math.round(zonearea);
-                console.log($scope.params);
             };
 
             function getRegistrationNumber(id){
@@ -497,20 +489,16 @@
 
             $scope.getPerimeter = function(zones) {
                 var perimeter = 0;
-
                 for(var k=0;k<zones.length-1;k++) {
                     var p1 = new google.maps.LatLng(zones[k]['lat'],zones[k]['lng']),
                         p2 = new google.maps.LatLng(zones[k+1]['lat'],zones[k+1]['lng']);
-
                     perimeter += google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
                 }
                 var p1 = new google.maps.LatLng(zones[0]['lat'],zones[0]['lng']),
                     p2 = new google.maps.LatLng(zones[zones.length-1]['lat'],zones[zones.length-1]['lng']);
-
                 perimeter += google.maps.geometry.spherical.computeDistanceBetween(p1, p2);
                 $scope.params[6] = {};
                 $scope.params[6].value = Math.round(perimeter);
-                console.log($scope.params);
             };
 
 
