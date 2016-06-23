@@ -1,4 +1,10 @@
 (function () {
+<<<<<<< HEAD
+
+	'use strict';
+
+=======
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
 	angular.module('restApp').directive("leafletMap", function ($http) {
 
 		var link = function ($scope, $element, attrs, $rootScope) {

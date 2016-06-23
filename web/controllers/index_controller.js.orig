@@ -90,14 +90,22 @@
                 $http.post('rest.php/resource_classes/addresourceclass', JSON.stringify($scope.resource_class))
                     .then(successHandler)
                     .catch(errorHandler);
+<<<<<<< HEAD
+                function successHandler(status) {
+=======
             }
             function successHandler(status) {
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
                     $scope.addResClass = "";
                     $scope.getData();
                 }
                 function errorHandler(status) {
                     alertPopup(status.status);
                 }
+<<<<<<< HEAD
+            }
+=======
+>>>>>>> e7ca1eeb214e1ee24cb10f89c7c7bebc360eb062
 
         };
 
