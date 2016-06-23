@@ -27,7 +27,7 @@
         vm.user = {
             username: '',
             password: '',
-            rememberMe: 1,
+            rememberMe: 1
         };
 
         vm.logIn = function(){
@@ -75,7 +75,6 @@
 
         };
         vm.sendNewPassword = function(){
-            console.log('send_new_password');
             vm.json = {
                 username: $location.search().u,
                 token: $location.search().p,
@@ -88,6 +87,46 @@
             function successHandler(result) {
                 console.log(result);
                 alert('Пароль успішно змінено');
+                $location.path('/site/login');
+            }
+            function errorHandler(result){
+                alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
+                console.log(result.data.message);
+            }
+
+        };
+        vm.changePassword = function(){
+            vm.json = {
+                username: $scope.currentUser.username,
+                password: vm.password
+            }
+               
+            console.log(vm.json);
+            return $http.post('rest.php/users/changepassloged', vm.json)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(result) {
+                alert('Пароль успішно змінено');
+                $location.path('/site/login');
+            }
+            function errorHandler(result){
+                alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
+                console.log(result.data.message);
+            }
+
+        };
+         vm.changeEmail = function(){
+            vm.json = {
+                username: $scope.currentUser.username,
+                email: vm.email
+            }
+               
+            console.log(vm.json);
+            return $http.post('rest.php/users/changeemail', vm.json)
+                .then(successHandler)
+                .catch(errorHandler);
+            function successHandler(result) {
+                alert('Email успішно змінено');
                 $location.path('/site/login');
             }
             function errorHandler(result){

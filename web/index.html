@@ -51,8 +51,10 @@
             <div class="nav navbar-nav navbar-right md-my-room " >
                 <ul class="nav navbar-nav ng-navbar-nav">
                     <li class="md-login-sign" ng-if="currentUser.isLogined">
-                        <span class="glyphicon glyphicon-user btn-mater" aria-hidden="true"></span>
-                        <span>&nbsp;{{currentUser.username}}</span>
+                        <a href="/site/updateprofile">
+                            <span class="glyphicon glyphicon-user btn-mater" aria-hidden="true"></span>
+                            <span>&nbsp;{{currentUser.username}}</span>
+                        </a>
                     </li>
                     <li ng-controller="LoginController">
                         <button ng-if="currentUser.isLogined" class="btn btn-material-grey-200" ng-click="logout()">ВИЙТИ &nbsp; <span class="glyphicon glyphicon-log-out btn-mater" aria-hidden="true" ></span></button>

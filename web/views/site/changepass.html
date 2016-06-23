@@ -1,0 +1,39 @@
+<div>
+    <div class="col-md-3"></div>
+    <div class="jumbotron col-md-6">
+        <div class="container-box-profile">
+            <h2>Зміна паролю</h2>
+            <p class="md-p-newpass">Введіть новий пароль.</p>
+            <form name="form" ng-submit="" role="form">
+                <div class="form-group" ng-controller="MainCtrl">
+                    <label for="password">Для користувача з ніком</label>
+                    <span ng-model="currentUser.username" class="username-field">{{currentUser.username}}</span>
+                </div>
+                <div class="form-group" >
+                    <label for="password">Новий пароль</label>
+                    <input type="password" name="password" id="password" class="form-control" ng-model="vm.password" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-click="vm.changePassword()">Відправити</button>
+                </div>
+            </form>
+        
+            <h2>Зміна email</h2>
+            <p class="md-p-newpass">Введіть новий email адрес.</p>
+            <form name="form" ng-submit="" role="form">
+                <div class="form-group" ng-controller="MainCtrl">
+                    <label for="email">Для користувача з ніком</label>
+                    <span ng-model="currentUser.username" class="username-field">{{currentUser.username}}</span>
+                </div>
+                <div class="form-group" >
+                    <label for="email">Новий email</label>
+                    <input type="email" name="email" id="email" class="form-control" ng-model="vm.email" required />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-click="vm.changeEmail()">Змінити</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
