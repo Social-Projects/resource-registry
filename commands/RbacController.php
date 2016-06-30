@@ -105,7 +105,12 @@ class RbacController extends Controller
         $auth->add($findAllAttr);
         $exportRes = $auth->createPermission('resource/export'); 
         $auth->add($exportRes);
-        
+        $extractRes = $auth->createPermission('resource/extract'); 
+        $auth->add($extractRes);
+        $changePassloged = $auth->createPermission('user/changepassloged');
+        $auth->add($changePassloged);
+        $siteUsers = $auth->createPermission('site/users');
+        $auth->add($siteUsers);
 
 
 
@@ -146,11 +151,13 @@ class RbacController extends Controller
         $auth->addChild($user, $resNum);
         $auth->addChild($user, $findAllAttr);
         $auth->addChild($user, $setEmail);
+        $auth->addChild($user, $changePassloged);
 
          
         // registrar
         $auth->addChild($registrar, $user);
         $auth->addChild($registrar, $search);
+        $auth->addChild($registrar, $resIndex);
         $auth->addChild($registrar, $findGlobalAttr);
         $auth->addChild($registrar, $findFilteredAttr);
         $auth->addChild($registrar, $findFilteredAttrbyResourceClass);
@@ -159,10 +166,13 @@ class RbacController extends Controller
         $auth->addChild($registrar, $resNum);
         $auth->addChild($registrar, $exportRes);
         $auth->addChild($registrar, $setEmail);
+        $auth->addChild($registrar, $extractRes);
+        $auth->addChild($registrar, $changePassloged);
         
        
         // commissioner
         $auth->addChild($commissioner, $user);
+        $auth->addChild($commissioner, $resIndex);
         $auth->addChild($commissioner, $userdata);
         $auth->addChild($commissioner, $edituserdata);
         $auth->addChild($commissioner, $userGetRole);
@@ -172,10 +182,12 @@ class RbacController extends Controller
         $auth->addChild($commissioner, $commIndex);
         $auth->addChild($commissioner, $commShow);
         $auth->addChild($commissioner, $setEmail);
+        $auth->addChild($commissioner, $changePassloged);
         
 
         // admin
         $auth->addChild($admin, $userdata);
+        $auth->addChild($admin, $resIndex);
         $auth->addChild($admin, $edituserdata);
         $auth->addChild($admin, $userGetRole);
         $auth->addChild($admin, $userChngActSt);
@@ -201,6 +213,8 @@ class RbacController extends Controller
         $auth->addChild($admin, $findFilteredAttr);
         $auth->addChild($admin, $findFilteredAttrbyResourceClass);
         $auth->addChild($admin, $setEmail);
+        $auth->addChild($admin, $changePassloged);
+        $auth->addChild($admin, $siteUsers);
 
         
         

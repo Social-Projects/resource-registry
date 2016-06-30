@@ -290,6 +290,107 @@ class ResourceController extends AppController
 		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 		$xmlWriter->save("php://output");
 	}
+
+	public function actionExtract($id)
+	{
+		$templateFilepath = dirname(__FILE__) . '/../templates/Template1.docx';
+		$source = dirname(__FILE__) . '/../temp1.docx';
+
+		\PhpOffice\PhpWord\Autoloader::register();
+
+		$templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($templateFilepath);
+
+		$months = ['Січня', 'Лютого', 'Березня', 'Квітня',
+			'Травня', 'Червня', 'Липня', 'Серпня', 'Вересня',
+			'Жовтня', 'Листопада', 'Грудня'];
+		$date = getdate();
+
+		$currentDate = $date['mday'] . ' ' . $months[$date['mon'] - 1] . ' ' . $date['year'] . ' року';
+
+		$extractNumber = '№' . $date['mday'] . ($date['mon'] - 1) . substr($date['year'], -2);
+
+		$resource = Resource::findOne($id);
+		$registrar = PersonalData::findOne($resource->registrar_data_id);
+		$registrar_info = $registrar->last_name . ' ' .
+		    $registrar->first_name . ' ' . $registrar->middle_name. ' ' .
+		    $registrar->address;
+		$registrarshortname =  $registrar->last_name . ' ' .
+		    $registrar->first_name . ' ' . $registrar->middle_name. ' ';
+		$registration_number = $resource->registration_number;
+		$registraraddress = $registrar->address;
+
+		$usernameOf = \Yii::$app->user->identity->username;
+        $username2Of = $resource->registration_number;
+
+		$templateProcessor->setValue('date', $currentDate);
+		$templateProcessor->setValue('name', $usernameOf);
+		$templateProcessor->setValue('address', $registrar_info);
+		$templateProcessor->setValue('registrar', $username2Of);
+		$templateProcessor->setValue('registraraddress', '79066, м.Львів, вул.Зелена 320');
+
+
+		$templateProcessor->setValue('resnumber', '804:23:17:026:0021');
+		$templateProcessor->saveAs($source);
+
+		$phpWord = \PhpOffice\PhpWord\IOFactory::load($source);
+
+		$phpWord->setDefaultFontName('Times New Roman');
+		$phpWord->setDefaultFontSize(11);
+
+		$sectionStyle = [
+			'marginTop' => 1000
+		];
+		$tableStyle = [
+			'borderSize' => 6,
+			'borderColor' => '000',
+			'cellMargin' => 0,
+		];
+		$innerTableStyle = [
+			'cellMargin' => 20,
+		];
+		$boldFontStyle = ['bold' => true];
+		$italicFontStyle = ['italic' => true];
+		$styleCell = ['valign' => 'center'];
+		$styleCellBTLR = ['valign' => 'center', 'textDirection' => \PhpOffice\PhpWord\Style\Cell::TEXT_DIR_BTLR];
+		$innerTableCellStyle = [
+			'borderRightSize' => 6,
+			'borderRightColor' => '000',
+			'borderLeftSize' => 6,
+			'borderLeftColor' => '000',
+			'borderBottomSize' => 6,
+			'borderBottomColor' => '000',
+			'width' => 500
+		];
+		$innerTableRightCellStyle = [
+			'borderLeftSize' => 6,
+			'borderLeftColor' => '000',
+			'borderBottomSize' => 6,
+			'borderBottomColor' => '000',
+			'width' => 500
+		];
+		$innerTableFontStyle = [
+			'size' => 9
+		];
+		$innerTableParagraphStyle = [
+			'align' => 'center'
+		];
+
+		$resource = Resource::findOne($id);
+
+		$filename = $resource->name. '.docx';
+
+
+		
+		header("Content-Description: File Transfer");
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+		header('Content-Transfer-Encoding: binary');
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Expires: 0');
+		$xmlWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+		$xmlWriter->save("php://output");
+	}
+
 	public function actionAdditiondata() {
 		$request = file_get_contents("php://input");
 		$data = json_decode($request);

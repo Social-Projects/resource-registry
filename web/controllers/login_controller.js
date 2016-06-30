@@ -66,7 +66,7 @@
                 .catch(errorHandler);
             function successHandler(result) {
                 alert('Повідомлення успішно відправлено на вашу електронну скриньку! Слідуйте інструкціям');
-                $location.path('/site/login');
+                $location.path('');
             }
             function errorHandler(result){
                 alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
@@ -87,7 +87,7 @@
             function successHandler(result) {
                 console.log(result);
                 alert('Пароль успішно змінено');
-                $location.path('/site/login');
+                $location.path('');
             }
             function errorHandler(result){
                 alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
@@ -107,7 +107,13 @@
                 .catch(errorHandler);
             function successHandler(result) {
                 alert('Пароль успішно змінено');
-                $location.path('/site/login');
+                sessionStorage.setItem('user',angular.toJson(result.data));
+                $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
+                if (result.data.role == 'admin') {
+                    $location.path('/site/users');
+                } else {
+                    $location.path('/resource/index');
+                }
             }
             function errorHandler(result){
                 alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");
@@ -127,7 +133,13 @@
                 .catch(errorHandler);
             function successHandler(result) {
                 alert('Email успішно змінено');
-                $location.path('/site/login');
+                sessionStorage.setItem('user',angular.toJson(result.data));
+                $rootScope.currentUser = angular.fromJson(sessionStorage.getItem('user'));
+                if (result.data.role == 'admin') {
+                    $location.path('/site/users');
+                } else {
+                    $location.path('/resource/index');
+                }
             }
             function errorHandler(result){
                 alert("Виникли проблеми при спробі обробки запиту, обновіть сторінку та спробуйте ще раз");

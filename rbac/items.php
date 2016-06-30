@@ -120,6 +120,15 @@ return [
     'resource/export' => [
         'type' => 2,
     ],
+    'resource/extract' => [
+        'type' => 2,
+    ],
+    'user/changepassloged' => [
+        'type' => 2,
+    ],
+    'site/users' => [
+        'type' => 2,
+    ],
     'user' => [
         'type' => 1,
         'ruleName' => 'userGroup',
@@ -138,6 +147,7 @@ return [
             'resource/registrationnumber',
             'attribute_class_view/findallattributes',
             'user/changeemail',
+            'user/changepassloged',
         ],
     ],
     'registrar' => [
@@ -146,6 +156,7 @@ return [
         'children' => [
             'user',
             'search/search',
+            'resource/index',
             'resource_attribute/findglobalattributes',
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
@@ -154,6 +165,8 @@ return [
             'resource/registrationnumber',
             'resource/export',
             'user/changeemail',
+            'resource/extract',
+            'user/changepassloged',
         ],
     ],
     'commissioner' => [
@@ -161,6 +174,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user',
+            'resource/index',
             'user/userdata',
             'user/edituserdata',
             'user/getrole',
@@ -170,6 +184,7 @@ return [
             'community/index',
             'community/show',
             'user/changeemail',
+            'user/changepassloged',
         ],
     ],
     'admin' => [
@@ -177,6 +192,7 @@ return [
         'ruleName' => 'userGroup',
         'children' => [
             'user/userdata',
+            'resource/index',
             'user/edituserdata',
             'user/getrole',
             'user/changeactivationstatus',
@@ -202,6 +218,8 @@ return [
             'attribute_class_view/findfilteredattributes',
             'attribute_class_view/findfilteredattributesforeachresourceclass',
             'user/changeemail',
+            'user/changepassloged',
+            'site/users',
         ],
     ],
 ];

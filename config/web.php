@@ -50,6 +50,7 @@ $config = [
                     'GET showrequest' => 'showrequest',
                     'GET addreq' => 'addreq',
                     'GET {id}/export' => 'export',
+                    'GET {id}/extract' => 'extract',
                     'GET getregisterkey' => 'getregisterkey',
                     'GET getresourcebycoordinate' => 'getresourcebycoordinate',
                     'POST getuser' => 'getuser',
