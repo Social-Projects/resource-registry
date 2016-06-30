@@ -25,6 +25,7 @@
             DAY_CHAR_START:0,
             DAY_CHAR_END:10,
             SQUARE_ID:4,
+            PERIMETER_ID:7,
             METERS_IN_HECTARE:10000,
             MSG_TO_FILL_TYPE_OPERATION : 'Виберіть будь ласка хоча б один тип операцій для перегляду подій',
             MSG_LOAD_USER:'Ви дійсно бажаєте вибрати дану особу як користувача ресурсу ?',

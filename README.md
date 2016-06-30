@@ -1,24 +1,57 @@
 
-
 Resource-registry project
 ============================
 
 Resource-registry project is a web [Yii 2](http://www.yiiframework.com/) application for the 
 decentralized property register of Natural Resources of Ukraine.
 
+CONTRIBUTORS
+------------
+
+* **[Roman Grabar](https://github.com/romangrb)**
+* **[Dmytro Miekh](https://github.com/Diedonne)**
+* **[Eduard Litvynchuck](https://github.com/litvinchuck)**
+* **[Vitalii Shevchuck](https://github.com/Vitashev)**
+* **[Yevhenii Stepanov](https://github.com/tird)**
+* **[Marian Turchyn](https://github.com/marianturchyn)**
+
+
+Technical Expert
+Orest Osipov
+
+Project managers:
+Ihor Kohut
+Vyacheslav Koldovskyy https://github.com/koldovsky
+
+
+* **[Olga Nagorna](https://github.com/olganagorna)**
+* **[Kostiantyn Shakhzadov](https://github.com/Shakhzadov)**
+* **[Andrii Uhryn](https://github.com/a-ugryn)**
+* **[Yevheniy Potupa](https://github.com/genyklemberg)**
+* **[Andriy Khrobak](https://github.com/AndriyKhrobak)**
+* **[Nazariy Zhovniriv](https://github.com/nzhovniriv)**
+* **[Yuriy Teslenko](https://github.com/YuriyTeslenko)**
+
+
+Technical Expert
+Andriy Fedchuk
+
+Project managers:
+Ihor Kohut
+
+
 DIRECTORY STRUCTURE
 -------------------
 
-      assets/             contains assets definition
       commands/           contains console commands (controllers)
       config/             contains application configurations
       controllers/        contains Web controller classes
       mail/               contains view files for e-mails
       models/             contains model classes
+      rbac/		  contains access permission
       runtime/            contains files generated during runtime
       tests/              contains various tests for the basic application
       vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
       web/                contains the entry script and Web resources
 
 
@@ -32,9 +65,11 @@ The minimum requirement by this project template that your Web server supports P
 INSTALLATION
 ------------
 
+Detailed instruction is described in "local LAMP config for resource registry app.txt" in root folder of the project.
+
 ### Install from an Archive File
 
-Extract the archive file downloaded from [github.com](https://github.com/litvinchuck/resource-registry/archive/master.zip) to
+Extract the archive file downloaded from [github.com](https://github.com/afedchuk/resource-registry/archive/lv-180.zip) to
 a root directory or any subdirectory located directly under the Web root.
 
 Set cookie validation key in `config/web.php` file to some random secret string:

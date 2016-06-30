@@ -63,19 +63,10 @@ return [
     'user/edituserdata' => [
         'type' => 2,
     ],
-    'user/getrole' => [
-        'type' => 2,
-    ],
     'user/adduser' => [
         'type' => 2,
     ],
     'user/changeactivationstatus' => [
-        'type' => 2,
-    ],
-    'user/changerole' => [
-        'type' => 2,
-    ],
-    'user/changecommunity' => [
         'type' => 2,
     ],
     'request/showrequest' => [
@@ -177,9 +168,7 @@ return [
             'resource/index',
             'user/userdata',
             'user/edituserdata',
-            'user/getrole',
             'user/changeactivationstatus',
-            'user/changerole',
             'user/adduser',
             'community/index',
             'community/show',
@@ -194,10 +183,7 @@ return [
             'user/userdata',
             'resource/index',
             'user/edituserdata',
-            'user/getrole',
             'user/changeactivationstatus',
-            'user/changerole',
-            'user/changecommunity',
             'user/adduser',
             'community/addcomm',
             'community/show',

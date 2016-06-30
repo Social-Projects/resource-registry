@@ -1,7 +1,4 @@
 (function () {
-
-	'use strict';
-
 	angular.module('restApp').directive("leafletMap", function ($http) {
 
 		var link = function ($scope, $element, attrs, $rootScope) {

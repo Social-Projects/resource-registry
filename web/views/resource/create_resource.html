@@ -64,8 +64,7 @@
         <div class="form-group" >
             <leaflet_map_create height="60vh" width="100%" coordinates="true" info="true" interactivity="true" add="true" bind="newCoords" update="options" find="false"></leaflet_map_create>
         </div>
-        <hr class="devider">
-        <div class="form-group">
+        <div class="form-group clearfix">
             <ul class="tags">
                 <li ng-repeat="coord in coords track by $index" ng-click="changeCoords(coord, $index);">
                     <a href="#" class="tag" ng-class="{tagactive: $index === coordId}">{{formatCoords(coord.lat)}}/{{formatCoords(coord.lng)}}</a>
@@ -79,6 +78,9 @@
             </button>
             <div >
                 <div class="collapse panel-body" id="collapseParams">
+                    <div class="set-parameters">
+                        <button ng-click="getArea(coords)">Визначити площу</button>&nbsp;<button ng-click="getPerimeter(coords)">Визначити периметр</button>
+                    </div>
                     <div class="form-group" ng-repeat="data in allAttributes track by $index">
                         <label>{{data.name}}</label>
                         <div>
@@ -123,7 +125,7 @@
                         </a>
                     </div>
                     <li class="list-group-item shadow-z-1 md-list row col-md-12" ng-model="owner_data" ng-repeat="data in owner_data" ng-if="show_search_result">
-                        <div ng-click="confirmOwner(this.data)">
+                        <div class="confirm-owner clearfix" ng-click="confirmOwner(this.data)">
                             <div class="col-xs-3">{{data.first_name}}</div>
                             <div class="col-xs-3">{{data.last_name}}</div>
                             <div class="col-xs-3">{{data.middle_name}}</div>
@@ -274,3 +276,5 @@
         <a href="resource/index" class="btn btn-material-grey-200">Скасувати</a>
     </form>
 </div>
+
+
