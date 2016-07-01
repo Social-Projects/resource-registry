@@ -319,13 +319,13 @@ class ResourceController extends AppController
 		$registration_number = $resource->registration_number;
 		$registraraddress = $registrar->address;
 
-		$usernameOf = \Yii::$app->user->identity->username;
-        $username2Of = $resource->registration_number;
+		// $usernameOf = \Yii::$app->user->identity->username;
+  //       $username2Of = $resource->registration_number;
 
 		$templateProcessor->setValue('date', $currentDate);
-		$templateProcessor->setValue('name', $usernameOf);
+		$templateProcessor->setValue('name', 'Петренко А.О.');
 		$templateProcessor->setValue('address', $registrar_info);
-		$templateProcessor->setValue('registrar', $username2Of);
+		$templateProcessor->setValue('registrar', 'Павелко І.О.');
 		$templateProcessor->setValue('registraraddress', '79066, м.Львів, вул.Зелена 320');
 
 

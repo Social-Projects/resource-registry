@@ -371,7 +371,7 @@
                     //'Create Resource without owner'
                     RestService.createData(resource, constant.resourcesQuery)
                          .then(function(response){
-                             createParameters(params, response.data.resource_id);
+                             createParameters(params, response.data.a);
                          });
 
                 } else if ($scope.ownerUpdate) {
@@ -387,6 +387,7 @@
                                 $scope.requestParams = {};
                                 $scope.requestParams.user_id = resource.registrar_data_id;
                                 $scope.requestParams.registration_number = $scope.resource.registration_number;
+                                $scope.requestParams.resource_id = $scope.resource.class_id;
                                 $scope.requestParams.requestType = 0;
                                 $scope.requestParams.reciever_user_id = $scope.ownerId;
                                 $scope.cachCoordArray.push([$scope.resource.registration_number]);
