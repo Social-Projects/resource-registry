@@ -149,3 +149,13 @@ return [
     'charset' => 'utf8',
 ];
 ```
+
+
+Access to application
+-------------
+
+admin  /  4444
+registrar / 4444
+user / 4444
+commissioner / 4444
+
